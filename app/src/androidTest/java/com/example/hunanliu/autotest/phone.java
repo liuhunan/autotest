@@ -206,6 +206,7 @@ public class phone {
 
     }
     @Test
+    //检查双卡拨号
     public void checkdoublesim() throws UiObjectNotFoundException, RemoteException {
         setup();
         device.pressBack();
