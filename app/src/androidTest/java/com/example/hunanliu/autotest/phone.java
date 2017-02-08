@@ -33,7 +33,7 @@ public class phone {
     @Before
     public void setup() throws RemoteException {
         device= UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        context=InstrumentationRegistry.getTargetContext();
+        //context=InstrumentationRegistry.getTargetContext();
         device.wakeUp();
        sleep(2000);
         int width=device.getDisplayWidth();
@@ -41,10 +41,11 @@ public class phone {
         device.swipe(width/2,hight,width/2,15*hight/20,5);
 
         device.pressBack();
+        sleep(500);
         device.pressBack();
-        sleep(1000);
+        sleep(500);
         device.pressHome();
-        sleep(1000);}
+        sleep(1500);}
     @Test
     //第一次进入电话
     public  void  firstintophone() throws UiObjectNotFoundException {
@@ -65,6 +66,7 @@ public class phone {
     //退出电话应用
     @Test
     public void backexitphone(){
+
         device.pressBack();
         sleep(500);
         device.pressBack();
@@ -238,5 +240,68 @@ public class phone {
         UiObject2 doublesimdialer=device.findObject(By.res("com.android.dialer:id/talpa_select_outgoing_phone_ll"));
         Assert.assertNotNull(doublesimdialer);
     }
+    @Test
+    public void checksingledialer1() throws RemoteException {
+        setup();
+        UiObject2 apps=device.findObject(By.desc("Apps"));
+        apps.click();
+        sleep(700);
+        UiObject2 settings=device.findObject(By.text("Settings"));
+        settings.click();
+        sleep(700);
+        UiObject2 simcards=device.findObject(By.text("SIM cards"));
+        simcards.click();
+        sleep(700);
+        UiObject2 calls=device.findObject(By.text("Calls"));
+        calls.click();
+        sleep(700);
+        UiObject2 sim1=device.findObject(By.text("SIM slot 1"));
+        sim1.click();
+        sleep(700);
+        device.pressBack();
+        sleep(700);
+        device.pressBack();
+        sleep(500);
+        device.pressBack();
+        sleep(500);
+        UiObject2 phone = device.findObject(By.text("Phone"));
+        phone.click();
+        sleep(1500);
+        UiObject2 dialer=device.findObject(By.desc("dial"));
+        Assert.assertNotNull(dialer);
+
+    }
+    @Test
+    //双卡设置卡2默认卡
+    public void checksingledialer2() throws RemoteException {
+        setup();
+        UiObject2 apps=device.findObject(By.desc("Apps"));
+        apps.click();
+        sleep(500);
+        UiObject2 settings=device.findObject(By.text("Settings"));
+        settings.click();
+        sleep(500);
+        UiObject2 simcards=device.findObject(By.text("SIM cards"));
+        simcards.click();
+        sleep(600);
+        UiObject2 calls=device.findObject(By.text("Calls"));
+        calls.click();
+        sleep(500);
+        UiObject2 sim1=device.findObject(By.text("SIM slot 2"));
+        sim1.click();
+        sleep(500);
+        device.pressBack();
+        sleep(500);
+        device.pressBack();
+        sleep(500);
+        device.pressBack();
+        sleep(500);
+        UiObject2 phone = device.findObject(By.text("Phone"));
+        phone.click();
+        sleep(1500);
+        UiObject2 dialer=device.findObject(By.desc("dial"));
+        Assert.assertNotNull(dialer);
+    }
+
 }
 
