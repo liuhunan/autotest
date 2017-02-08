@@ -283,7 +283,7 @@ public class phone {
         sleep(500);
         UiObject2 simcards=device.findObject(By.text("SIM cards"));
         simcards.click();
-        sleep(600);
+        sleep(700);
         UiObject2 calls=device.findObject(By.text("Calls"));
         calls.click();
         sleep(500);
